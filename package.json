@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "ngx": "^2.4.0"
+    "ngx": "^2.4.0",
+    "react-bootstrap": "^2.10.10"
   }
 }

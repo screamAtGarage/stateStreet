@@ -5,10 +5,7 @@ import com.statestreat.rentacar.model.Rent;
 import com.statestreat.rentacar.model.RentRepo;
 import com.statestreat.rentacar.model.YetAnotherCar;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -25,16 +22,19 @@ public class RentCarController {
 
 
     @GetMapping
-    public List<YetAnotherCar> getCars(){
+    public List<YetAnotherCar> getCars() {
         return carRepo.findAll();
     }
 
-    @PostMapping
-    public void setRent(int carId, Date start, Date end){
-        Rent rent = new Rent();
-        rent.setCarId(carId);
-        rent.setRentStart(start);
-        rent.setRentEnd(end);
+    @PostMapping(value = "/{id}")
+    public void setRent(@PathVariable("id") int id, @RequestBody Rent rent) {
+        rent.setCarId(id);
         rentRepo.save(rent);
     }
+
+    @GetMapping(value = "/rents")
+    public List<Rent> getRents() {
+        return rentRepo.findAll();
+    }
+
 }

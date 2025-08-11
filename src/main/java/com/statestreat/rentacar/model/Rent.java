@@ -17,7 +17,8 @@ public class Rent {
     int rentId;
 
     int carId;
-    Date rentStart;
-    Date rentEnd;
+    Date startDate;
+    int days;
+    String name;
 
 }
